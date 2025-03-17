@@ -202,10 +202,10 @@ class SamSession(BaseSession):
         ## decoder
 
         input_points, input_labels = get_input_points(prompt)
-        onnx_coord = np.concatenate([input_points, np.array([[0.0, 0.0]])], axis=0)[
+        onnx_coord = input_points[
             None, :, :
         ]
-        onnx_label = np.concatenate([input_labels, np.array([-1])], axis=0)[
+        onnx_label = input_labels[
             None, :
         ].astype(np.float32)
         onnx_coord = apply_coords(onnx_coord, input_size, target_size).astype(
